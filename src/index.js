@@ -55,6 +55,10 @@ export default function fileLoader(content) {
       outputPath = relativePath + url;
     }
     url = relativePath + url;
+    if (config.outputPath) {
+      // support functions as outputPath to generate them dynamically
+      outputPath = (typeof config.outputPath === 'function' ? config.outputPath(url) : config.outputPath + url);
+    }
   } else if (config.outputPath) {
     // support functions as outputPath to generate them dynamically
     outputPath = (typeof config.outputPath === 'function' ? config.outputPath(url) : config.outputPath + url);
